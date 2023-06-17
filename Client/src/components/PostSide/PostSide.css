@@ -5,3 +5,12 @@
     height: 100vh;
     overflow: auto;
 }
+
+@media only screen and (max-width: 500px) {
+ .PostSide {
+    width: 100vw;
+    gap: 1rem;
+    margin: 0 10px 0 -12px;
+ }
+  
+}

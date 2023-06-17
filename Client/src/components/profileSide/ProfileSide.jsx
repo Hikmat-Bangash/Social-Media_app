@@ -7,7 +7,7 @@ import "./ProfileSide.css"
 const ProfileSide = () => {
   return (
     <div className="ProfileSide">
-        <LogoSearch/>
+        {/* <LogoSearch/> */}
         <ProfileCard location="homepage" />
         <FollowersCard/>
     </div>

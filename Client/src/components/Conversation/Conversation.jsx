@@ -29,17 +29,17 @@ useEffect(() => {
 //    --------- JSX SECTION --------------
   return (
     <>
-    <div className="follower conversion">
-        <div>
+    <div className="follower conversion" >
+        <div style={{ display: "flex", flexDirection: "column" }}>
         {online && <div className="online-dot"></div>}
         <img src={userData?.profilePicture? userData.profilePicture : avator } alt="" 
          className='followerImage'
          style={{width: '65px', height: '65px', objectFit: 'cover'}}
         />
   
-          <div className="name" style={{fontSize: '0.8rem'}}>
+          <div className="name" style={{fontSize: '12px', display: "flex"}}>
             <span>{userData?.firstname} {userData?.lastname}</span>
-            <span>{online ? "Online" : "Offline"}</span>
+            {/* <span>{online ? "Online" : "Offline"}</span> */}
           </div> 
 
 

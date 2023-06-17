@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect} from 'react'
 import './Posts.css'
-import Profile from "../../img/avator.jpg";
 import Post from '../Post/Post'
 import { useDispatch, useSelector } from 'react-redux';
 import { TimeLinePost } from '../../Actions/PostAction';
@@ -34,7 +33,10 @@ if(param.id){
 
   return (
     <div className="Posts">
-      {loading ? "Fetching Posts ..." : 
+      {loading ? <div className="loading" style={{width: "100vw", height: "70vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+         <p style={{fontSize: "20px", color: "gray"}}>Fetching posts...</p>
+      </div>
+      : 
         posts.map((post)=>{
             return <Post data={post} key={post._id} />
         })

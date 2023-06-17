@@ -1,5 +1,5 @@
 import { Modal, useMantineTheme } from "@mantine/core";
-import React,{ useState } from "react";
+import React,{ useEffect, useState } from "react";
 import axios from "axios";
 import {useDispatch, useSelector} from 'react-redux'
 import {useParams} from 'react-router-dom'
@@ -7,9 +7,12 @@ import { UpdateUserInfo } from "../../Actions/UpdateUserAction.js";
 
 function ProfileModal({ modalOpened, setModalOpened }) {
   const theme = useMantineTheme();
+  const [Load, setLoad] = useState(false)
 
   const [coverpic, setcoverpic] = useState(null)
-  const [profilepic, setprofilepic] = useState(null)
+  const [profilepic, setprofilepic] = useState(null);
+  const [screenWidth, setScreenWidth] = useState();
+  const {user} = useSelector((state)=>state.AuthReducer.authData);
   const [info, setinfo] = useState({
     firstname: "",
     lastname: "",
@@ -17,11 +20,10 @@ function ProfileModal({ modalOpened, setModalOpened }) {
     livesin: "",
     country: "",
     relationship: "",
-    profilePicture: "",
-    coverPicture: "",
+    profilePicture: user?.profilePicture,
+    coverPicture: user?.coverPicture,
   })
-  const {user} = useSelector((state)=>state.AuthReducer.authData);
- const param = useParams();
+  const param = useParams();
  const dispatch = useDispatch();
 
 
@@ -37,7 +39,7 @@ function ProfileModal({ modalOpened, setModalOpened }) {
 
   // --------- UpdateInfo is the method to update the user info ------
   const UpdateInfo = async ()=>{
-
+  setLoad(true)
    // ----------------- Uploading coverpic on cloudnary ----------------
  if(coverpic != null){
   const data = new FormData();
@@ -79,10 +81,33 @@ function ProfileModal({ modalOpened, setModalOpened }) {
 
   dispatch(UpdateUserInfo(param.id, info))
     console.log(info)
+    setLoad(false)
     setModalOpened(false);
    
   }
 
+  useEffect(() => {
+    // Update the screenWidth state on window resize
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // Determine the size value based on the screen width
+  const getSizeValue = () => {
+    if (screenWidth <= 500) {
+      return '100%';
+    } else {
+      return '70%';
+    }
+  };
 
   // ----------------- JSX SECTION --------------
   return (
@@ -94,7 +119,7 @@ function ProfileModal({ modalOpened, setModalOpened }) {
       }
       overlayOpacity={0.55}
       overlayBlur={3}
-      size="55%"
+      size={getSizeValue}
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
@@ -111,7 +136,8 @@ function ProfileModal({ modalOpened, setModalOpened }) {
             onChange={handlerOnchange}
             value={info.firstname}
           />
-
+        </div>
+        <div>
           <input
             type="text"
             className="infoInput"
@@ -121,7 +147,6 @@ function ProfileModal({ modalOpened, setModalOpened }) {
             value={info.lastname}
           />
         </div>
-
         <div>
           <input
             type="text"
@@ -142,6 +167,9 @@ function ProfileModal({ modalOpened, setModalOpened }) {
             onChange={handlerOnchange}
             value={info.livesin}
           />
+        </div>
+
+        <div>
 
           <input
             type="text"
@@ -152,7 +180,6 @@ function ProfileModal({ modalOpened, setModalOpened }) {
             value={info.country}
           />
         </div>
-
         <div>
           <input
             type="text"
@@ -165,14 +192,19 @@ function ProfileModal({ modalOpened, setModalOpened }) {
         </div>
 
 
-        <div>
-            Profile Image 
-            <input type="file" name='profileImg' onChange={(e)=>setprofilepic(e.target.files[0])}/>
+        <div style={{display: "flex", flexDirection: "column"}}>
+          <div className="prflPiccc" style={{ }}>
+            Profile Image
+            <input type="file" name='profileImg' onChange={(e) => setprofilepic(e.target.files[0])} />
+          </div>
+
+           <div className="cvrPic">
             Cover Image
-            <input type="file" name="coverImg" onChange={(e)=>setcoverpic(e.target.files[0])} />
+            <input type="file" name="coverImg" onChange={(e) => setcoverpic(e.target.files[0])} />
+          </div>
         </div>
 
-        <button type="submit" className="button infoButton" onClick={UpdateInfo} >Update</button>
+        <button type="submit" className="button infoButton" onClick={UpdateInfo} disabled={Load} >Update</button>
         </div>
       {/* </form> */}
     </Modal>

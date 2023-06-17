@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import routing from './Routes/RegisterUsers.js' // routing component rendering
+import routing from './Routes/RegisterUsers.js' 
 import Users from './Routes/Users.js'
 import Posts from './Routes/PostsRoutes.js'
 import ChatRoute from './Routes/ChatRoutes.js';

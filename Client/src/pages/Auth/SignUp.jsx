@@ -4,7 +4,7 @@ import "./Auth.css";
 const SignUp = ({loading, toggle, settoggle, handleChange, SubmitData, error }) => {
     return (
       <div className="a-right">
-        <form onSubmit={SubmitData} className="infoForm authForm">
+        <form onSubmit={SubmitData} className="infoForm signup authForm">
           <h3>Sign up</h3>
   
           <div>
@@ -16,16 +16,17 @@ const SignUp = ({loading, toggle, settoggle, handleChange, SubmitData, error }) 
               name="firstname"
               onChange={handleChange}
             />
+          </div>
+          <div>
             <input
-             required
+              required
               type="text"
               placeholder="Last Name"
               className="infoInput"
               name="lastname"
               onChange={handleChange}
             />
-          </div>
-  
+         </div>
           <div>
             <input
              required
@@ -46,8 +47,10 @@ const SignUp = ({loading, toggle, settoggle, handleChange, SubmitData, error }) 
               placeholder="Password"
               onChange={handleChange}
             />
+          </div>
+          <div>
             <input
-             required
+              required
               type="password"
               className="infoInput"
               name="confirmpass"
@@ -62,12 +65,12 @@ const SignUp = ({loading, toggle, settoggle, handleChange, SubmitData, error }) 
           )}
           <div>
             <span
-              style={{ fontSize: "12px", cursor: "pointer" }}
+              style={{ fontSize: "12px", cursor: "pointer", color: 'blue' }}
               onClick={() => settoggle(!toggle)}
             >
               Already have an account. Login!
             </span>
-            <button className="button infoButton" type="submit" disabled={loading}>
+            <button className="button infoButton" type="submit">
               Signup
             </button>
           </div>

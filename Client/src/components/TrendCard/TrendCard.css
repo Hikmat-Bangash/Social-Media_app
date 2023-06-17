@@ -24,3 +24,16 @@
 {
     font-size: 13px;
 }
+@media only screen and (max-width: 500px){
+  
+  .TrendCard{
+    position: absolute;
+    top: 7%;
+    width: 87%;
+    height: 100%;
+    margin-left: -16px;
+
+      background-color: white;
+      z-index: 30;
+  }
+}

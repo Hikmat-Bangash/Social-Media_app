@@ -5,6 +5,7 @@ import Profile from "./pages/Profile/Profile";
 import Chat from "./pages/chat/Chat";
 import {Routes, Route, Navigate} from 'react-router-dom'
 import { useSelector } from "react-redux";
+import Navbar from "./components/Mobile-Navbar/Navbar";
 function App() {
 
  const user = useSelector((state)=>state.AuthReducer.authData);
@@ -12,7 +13,8 @@ function App() {
     <>
     <div className="App">
         <div className="blur" style={{top: '-18%', right: '0'}}></div>
-        <div className="blur" style={{top: '36%', left: '-8rem'}}></div>
+        <div className="blur" style={{ top: '36%', left: '-8rem' }}></div>
+        {user ? <Navbar /> : null}
        
        <Routes>
         <Route path='/' element={user? <Navigate to='home' /> : <Navigate to='auth' />} />

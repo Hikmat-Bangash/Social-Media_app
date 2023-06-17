@@ -2,7 +2,8 @@ import React from 'react'
 import "./Auth.css";
 
 
-const LogIn = ({loading, toggle, settoggle, LoginhandleChange, SubmitData, login, setlogin, error }) => {
+const
+  LogIn = ({ loading, toggle, settoggle, LoginhandleChange, SubmitData, login, setlogin, error }) => {
     
   return (
       <div className="a-right">
@@ -38,7 +39,7 @@ const LogIn = ({loading, toggle, settoggle, LoginhandleChange, SubmitData, login
             >
               Don't have an account Sign up
             </span>
-            <button className="button infoButton" type="submit" disabled={loading}>
+            <button className="button infoButton" type="submit" >
               Login
             </button>
           </div>

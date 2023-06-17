@@ -74,10 +74,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-weight: normal;
     cursor: pointer
 }
 .chat-sender>div{
     height: 70%;
     padding: 0px 15px 0px 15px;
+}
+
+@media only screen and (max-width: 500px){
+.ChatBox-container {
+    margin-top: 15px;
+    height: 90vh;
+}
+
+  .follower.chat{
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-body{
+     margin-left: -12px;
+  }
+  .chat-sender{
+      background: white;
+    height: 3rem;
+    align-items: center;
+    gap: 0rem;
+    padding: 0.8rem;
+    align-self: end;
+  }
+  .Input-icon{
+   margin-left: 30px;
+}
 }

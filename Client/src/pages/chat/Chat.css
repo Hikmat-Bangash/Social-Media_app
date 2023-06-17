@@ -67,10 +67,19 @@
   
   
   @media screen and (max-width: 768px) {
-   .Chat {
-      grid-template-columns: 16% auto;
-    }
-     .follower.conversation>div>.name{
-      display: none;
-     }
+   .navIcons{
+    display: none;
+   }
+   .chat{
+    width: 100vw;
+    margin-left: -16px;
+    /* height: 80vh; */
+   }
+   .Chat-container{
+    margin-left: -16px;
+    display: flex;
+    justify-content: start;
+    margin-top: 15px;
+
+   }
   }

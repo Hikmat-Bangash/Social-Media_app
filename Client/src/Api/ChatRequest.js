@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 
-const API = axios.create({baseURL: 'http://localhost:5000'});
+const API = axios.create({
+  baseURL: "https://social-media-app-backend-nine.vercel.app/",
+});
 
 
 // ------------- creating a new chat ---------------

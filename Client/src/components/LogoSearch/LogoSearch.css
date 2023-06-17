@@ -29,3 +29,8 @@
 .s-icon:hover{
     cursor: pointer;
 }
+@media only screen and (max-width: 500px){
+ .LogoSearch{
+    display: none;
+ }
+}

@@ -5,3 +5,10 @@
     align-items: center;
     overflow: auto;
 }
+
+@media only screen and (max-width: 500px) {
+  .ProfileSide{
+    display: none;
+  }
+  
+}
